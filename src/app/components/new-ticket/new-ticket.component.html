@@ -1,0 +1,91 @@
+<div>
+    <div>
+        <h1>Buy Tickets</h1>
+    </div>
+    <div>
+        <div>
+            <div>
+                <mat-icon fontIcon="event"></mat-icon>
+                <input type="date" [(ngModel)]="newTicketObj.ticketDate" placeholder="date">
+            </div>
+            <div class="flex">
+                <div>
+                    <mat-icon fontIcon="person"></mat-icon>
+                    <input [ngModel]="newTicketObj.customerName" type="text" placeholder="name">
+                </div>
+                <div>
+                    <mat-icon fontIcon="phone"></mat-icon>
+                    <input [ngModel]="newTicketObj.mobileNo"  type="text" placeholder="phone No.">
+                </div>
+                <div>
+                    <mat-icon fontIcon="email"></mat-icon>
+                    <input type="email" [(ngModel)]="newTicketObj.email" placeholder="123@email.com">
+                </div>
+            </div>                
+        </div>
+
+        <div class="flex">
+            <div>
+                <mat-icon fontIcon="location_city"></mat-icon>
+                <input [ngModel]="newTicketObj.city"  type="text" placeholder="city">
+            </div>
+           
+            <div>
+                <mat-icon fontIcon="location_city"></mat-icon>
+                <input [ngModel]="newTicketObj.state"  type="text" placeholder="state">
+            </div>
+            <div>
+                <mat-icon fontIcon="map"></mat-icon>
+                <input [ngModel]="newTicketObj.pincode"  type="text" placeholder="postcode">
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr><hr>
+<div>
+    <mat-icon fontIcon="add_circle_outline"></mat-icon>
+    <select name="" id="" [(ngModel)]="newTicketObj.reference" (change)="changeRef()">
+        <option value="select option">select option</option>
+        <option value="new paper">new paper</option>
+        <option value="other">other</option>
+    </select>
+
+    <div *ngIf="isOtherSelected">
+        <label for="">reference
+            <input type="text" [(ngModel)]='otherRef'>
+        </label>
+    </div>
+
+    <div> 
+        <div> 
+            <label for="">adult rate
+                <input [(ngModel)]="newTicketObj.adultRate"  type="text" (change)="calTotal()">
+            </label>
+            <label for="">kids rate
+                <input [(ngModel)]="newTicketObj.childRate"  type="text" (change)="calTotal()">
+            </label>
+            <label for="">adults
+                <input [(ngModel)]="newTicketObj.adultCount"  type="text" (change)="calTotal()">
+            </label>
+            <label for="">kids
+                <input [(ngModel)]="newTicketObj.childCount"  type="text" (change)="calTotal()">
+            </label>
+        </div>
+
+        <div>
+            <label for="">total
+                <input [ngModel]="newTicketObj.totalAmount"  type="text">
+            </label>
+            <label for="">discount
+                <input [ngModel]="newTicketObj.discountInPercent"  type="text">
+            </label>
+            <label for="">after discount
+                <input [ngModel]="newTicketObj.finalAmount"  type="text">
+            </label>
+        </div>
+    </div>
+    
+    <button class="w-2/5 h-10 bg-green-500 mt-20" (click)="fetchTickets()">buy tickets</button>
+ 
+</div>
