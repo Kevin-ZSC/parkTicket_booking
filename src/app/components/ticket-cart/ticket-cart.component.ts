@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { TicketService } from '../../ticket.service';
 
 @Component({
   selector: 'app-ticket-cart',
@@ -10,7 +10,7 @@ export class TicketCartComponent implements OnInit{
   tickets: any[] = [];
   isTileView: boolean = true;
   isToday: boolean = true;
-  constructor(private http:HttpClient) {}
+  constructor(private ticketService:TicketService) {}
 
   ngOnInit(): void {
     this.getAllTickets()
@@ -26,14 +26,14 @@ export class TicketCartComponent implements OnInit{
   }
 
   getAllTickets () {
-    this.http.get("https://freeapi.miniprojectideas.com/api/youtube/GetAllTickets")
+    this.ticketService.get()
       .subscribe((res:any)=>{
        this.tickets = res.data;
       })
   }
 
   getTodayTickets () {
-    this.http.get("https://freeapi.miniprojectideas.com/api/youtube/GetTodaysTickets")
+    this.ticketService.get()
       .subscribe((res:any)=>{
        this.tickets = res.data;
       })
