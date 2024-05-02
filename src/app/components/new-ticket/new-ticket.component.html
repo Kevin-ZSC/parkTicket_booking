@@ -1,91 +1,100 @@
-<div>
-    <div>
-        <h1>Buy Tickets</h1>
-    </div>
-    <div>
-        <div>
-            <div>
-                <mat-icon fontIcon="event"></mat-icon>
-                <input type="date" [(ngModel)]="newTicketObj.ticketDate" placeholder="date">
-            </div>
-            <div class="flex">
-                <div>
-                    <mat-icon fontIcon="person"></mat-icon>
-                    <input [ngModel]="newTicketObj.customerName" type="text" placeholder="name">
+<div class="w-full h-full mx-auto">
+    <div class="container mx-auto py-8 flex justify-between">
+        <!-- Left Part -->
+        <div class="w-2/3 pr-4">
+            
+            <div class="mb-4">
+                <div class="flex items-center mb-2">
+                    <mat-icon class="mr-2" fontIcon="event"></mat-icon>
+                    <input class="border rounded-md py-2 px-3 w-48" type="date" [(ngModel)]="newTicketObj.ticketDate" placeholder="Date">
                 </div>
-                <div>
-                    <mat-icon fontIcon="phone"></mat-icon>
-                    <input [ngModel]="newTicketObj.mobileNo"  type="text" placeholder="phone No.">
-                </div>
-                <div>
-                    <mat-icon fontIcon="email"></mat-icon>
-                    <input type="email" [(ngModel)]="newTicketObj.email" placeholder="123@email.com">
-                </div>
-            </div>                
-        </div>
-
-        <div class="flex">
-            <div>
-                <mat-icon fontIcon="location_city"></mat-icon>
-                <input [ngModel]="newTicketObj.city"  type="text" placeholder="city">
+                <div class="flex mb-2">
+                    <div class="flex items-center mr-4">
+                        <mat-icon class="mr-2" fontIcon="person"></mat-icon>
+                        <input class="border rounded-md py-2 px-3 w-48" [(ngModel)]="newTicketObj.customerName" type="text" placeholder="Name">
+                    </div>
+                    <div class="flex items-center mr-4">
+                        <mat-icon class="mr-2" fontIcon="phone"></mat-icon>
+                        <input class="border rounded-md py-2 px-3 w-48" [(ngModel)]="newTicketObj.mobileNo" type="text" placeholder="Phone No.">
+                    </div>
+                    <div class="flex items-center">
+                        <mat-icon class="mr-2" fontIcon="email"></mat-icon>
+                        <input class="border rounded-md py-2 px-3 w-48" type="email" [(ngModel)]="newTicketObj.email" placeholder="123@email.com">
+                    </div>
+                </div>                
             </div>
-           
-            <div>
-                <mat-icon fontIcon="location_city"></mat-icon>
-                <input [ngModel]="newTicketObj.state"  type="text" placeholder="state">
-            </div>
-            <div>
-                <mat-icon fontIcon="map"></mat-icon>
-                <input [ngModel]="newTicketObj.pincode"  type="text" placeholder="postcode">
-            </div>
-        </div>
-    </div>
-</div>
-
-<hr><hr>
-<div>
-    <mat-icon fontIcon="add_circle_outline"></mat-icon>
-    <select name="" id="" [(ngModel)]="newTicketObj.reference" (change)="changeRef()">
-        <option value="select option">select option</option>
-        <option value="new paper">new paper</option>
-        <option value="other">other</option>
-    </select>
-
-    <div *ngIf="isOtherSelected">
-        <label for="">reference
-            <input type="text" [(ngModel)]='otherRef'>
-        </label>
-    </div>
-
-    <div> 
-        <div> 
-            <label for="">adult rate
-                <input [(ngModel)]="newTicketObj.adultRate"  type="text" (change)="calTotal()">
-            </label>
-            <label for="">kids rate
-                <input [(ngModel)]="newTicketObj.childRate"  type="text" (change)="calTotal()">
-            </label>
-            <label for="">adults
-                <input [(ngModel)]="newTicketObj.adultCount"  type="text" (change)="calTotal()">
-            </label>
-            <label for="">kids
-                <input [(ngModel)]="newTicketObj.childCount"  type="text" (change)="calTotal()">
-            </label>
-        </div>
-
-        <div>
-            <label for="">total
-                <input [ngModel]="newTicketObj.totalAmount"  type="text">
-            </label>
-            <label for="">discount
-                <input [ngModel]="newTicketObj.discountInPercent"  type="text">
-            </label>
-            <label for="">after discount
-                <input [ngModel]="newTicketObj.finalAmount"  type="text">
-            </label>
-        </div>
-    </div>
     
-    <button class="w-2/5 h-10 bg-green-500 mt-20" (click)="fetchTickets()">buy tickets</button>
- 
+            <div class="flex mb-4">
+                <div class="flex items-center mr-4">
+                    <mat-icon class="mr-2" fontIcon="location_city"></mat-icon>
+                    <input class="border rounded-md py-2 px-3 w-48" [(ngModel)]="newTicketObj.city" type="text" placeholder="City">
+                </div>
+               
+                <div class="flex items-center mr-4">
+                    <mat-icon class="mr-2" fontIcon="location_city"></mat-icon>
+                    <input class="border rounded-md py-2 px-3 w-48" [(ngModel)]="newTicketObj.state" type="text" placeholder="State">
+                </div>
+                <div class="flex items-center">
+                    <mat-icon class="mr-2" fontIcon="map"></mat-icon>
+                    <input class="border rounded-md py-2 px-3 w-48" [(ngModel)]="newTicketObj.pincode" type="text" placeholder="Postcode">
+                </div>
+            </div>
+        </div>
+    
+        <!-- Right Part -->
+        <div class="w-1/2 pl-4">
+            <label for="otherRef" class="block mb-2">Reference:</label>
+            <div class="flex gap-3 items-center">
+               
+                <mat-icon class="mr-2" fontIcon="add_circle_outline"></mat-icon>
+                <select class="border rounded-md py-2 px-3 w-40" [(ngModel)]="newTicketObj.reference" (change)="changeRef()">
+                    <option value="select option">Select Option</option>
+                    <option value="new paper">New Paper</option>
+                    <option value="other">Other</option>
+                </select>
+                <div class=" items-center" *ngIf="isOtherSelected">
+                    <input class="border rounded-md py-2 px-3 w-40" id="otherRef" type="text" [(ngModel)]="otherRef">
+                </div>
+            </div>
+        
+            <div class="mt-4 flex gap-3">
+                <div class="flex flex-col mb-4">
+                    <label for="adultRate" class="mb-2">Adult Rate:</label>
+                    <input class="border rounded-md py-2 px-3 w-20" id="adultRate" [(ngModel)]="newTicketObj.adultRate" type="text" (change)="calTotal()">
+                </div>
+                <div class="flex flex-col mb-4 ">
+                    <label for="childRate" class="mb-2">Kids Rate:</label>
+                    <input class="border rounded-md py-2 px-3 w-20" id="childRate" [(ngModel)]="newTicketObj.childRate" type="text" (change)="calTotal()">
+                </div>
+                <div class="flex flex-col mb-4">
+                    <label for="adultCount" class="mb-2">Adults:</label>
+                    <input class="border rounded-md py-2 px-3 w-20" id="adultCount" [(ngModel)]="newTicketObj.adultCount" type="text" (change)="calTotal()">
+                </div>
+                <div class="flex flex-col mb-4">
+                    <label for="childCount" class="mb-2">Kids:</label>
+                    <input class="border rounded-md py-2 px-3 w-20" id="childCount" [(ngModel)]="newTicketObj.childCount" type="text" (change)="calTotal()">
+                </div>
+            </div>
+        
+            <div class="mt-4 flex gap-3">
+                <div class="flex flex-col mb-4">
+                    <label for="totalAmount" class="mb-2">Total:</label>
+                    <input class="border rounded-md py-2 px-3 w-20" id="totalAmount" [(ngModel)]="newTicketObj.totalAmount" type="text">
+                </div>
+                <div class="flex flex-col mb-4">
+                    <label for="discount" class="mb-2">Discount:</label>
+                    <input class="border rounded-md py-2 px-3 w-20" id="discount" [(ngModel)]="newTicketObj.discountInPercent" type="text" (change)="calTotal()">
+                </div>
+                <div class="flex flex-col mb-4">
+                    <label for="finalAmount" class="mb-2">After Discount:</label>
+                    <input class="border rounded-md py-2 px-3 w-20" id="finalAmount" [ngModel]="newTicketObj.finalAmount" type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w-full flex justify-center mt-8">
+        <button class="w-1/5 h-10 bg-green-500 rounded-md text-white" (click)="fetchTickets()">Buy Tickets</button>
+    </div>
 </div>
+
+

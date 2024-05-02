@@ -34,13 +34,16 @@ otherRef : string = '';
   constructor(private http: HttpClient){}
 
   fetchTickets(){
-    debugger
+    
+    if(this.isOtherSelected) {
+      this.newTicketObj.reference = this.otherRef;
+    }
     this.http.post('https://freeapi.miniprojectideas.com/api/youtube/AddNewTicket',this.newTicketObj)
       .subscribe((res:any )=> {
         if(res.result) {
-          alert('ticket is success')
+          console.log('ticket is success')
         } else {
-          alert(res.message)
+          console.log(res.message)
         }
       })
   }
@@ -52,6 +55,7 @@ otherRef : string = '';
   changeRef() {
     if(this.newTicketObj.reference == 'other') {
       this.isOtherSelected = true;
+      
     } else {
       this.isOtherSelected = false;
     }
@@ -60,5 +64,9 @@ otherRef : string = '';
   calTotal() {
     const totalAmount = (this.newTicketObj.adultRate * this.newTicketObj.adultCount) + (this.newTicketObj.childRate * this.newTicketObj.childCount);
     this.newTicketObj.totalAmount = totalAmount;
+
+    const discountAmount = totalAmount * this.newTicketObj.discountInPercent / 100;
+
+    this.newTicketObj.finalAmount = this.newTicketObj.totalAmount - discountAmount;
   }
 }

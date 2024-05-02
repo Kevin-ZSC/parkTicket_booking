@@ -4,7 +4,7 @@ import { NewTicketComponent } from './components/new-ticket/new-ticket.component
 import { TicketCartComponent } from './components/ticket-cart/ticket-cart.component';
 
 const routes: Routes = [
-  { path:'', redirectTo:"home",pathMatch:'full'},
+  { path:'', redirectTo:"newticket",pathMatch:'full'},
   { path:'newticket', component: NewTicketComponent},
   { path:'ticketcart', component: TicketCartComponent}
 ];
